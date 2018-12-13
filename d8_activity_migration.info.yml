@@ -1,0 +1,5 @@
+name: D8 Activity Migration
+type: module
+description: 'Migrates xml source files to D8.'
+package: custom
+core: 8.x

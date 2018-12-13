@@ -1,0 +1,28 @@
+id: d8_migration_create_taxonomy
+label: D8 Migration Create Taxonomy
+migration_group: d8_activity_xml_source
+source:     
+  plugin: url     
+  data_fetcher_plugin: http     
+  data_parser_plugin: xml    
+  urls: private://migration_source_files/categories.xml
+  item_selector: /categories/category
+  fields: 
+    - 
+      name: term_id 
+      label: Taxonomy Term ID 
+      selector: id 
+    - 
+      name: term_name 
+      label: Taxonomy Term Name 
+      selector: name
+  ids:
+    term_id:
+      type: integer 
+destination:
+  plugin: entity:taxonomy_term
+process:
+  vid:
+    plugin: default_value
+    default_value: tags
+  name: term_name

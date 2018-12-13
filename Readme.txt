@@ -1,0 +1,18 @@
+Info file
+------
+Like any other module
+
+SourceXML.php file
+--------
+
+migrate_plus.migration.create_taxonomy.yml
+--------
+Most Imp file. This file runs migration. It has a certain format i.e naming convention should be migrate_plus.migration.*.yml.
+Generally placed inside config/install to run on module enable.
+
+In source -> fields section, name identifies to other parts in the migration & selector is the tag that is mapped from the source xml file.
+
+In source -> Item selector is important. Map parent tags of xml file.
+
+
+
