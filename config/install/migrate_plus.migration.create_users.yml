@@ -1,0 +1,35 @@
+id: xml_user_migration
+label: XML User Migration
+migration_group: d8_activity_xml_source
+source: 
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: private://migration_source_files/users.xml
+  item_selector: /users/user
+  fields:
+    -
+      name: user_id
+      label: User ID
+      selector: id
+    -
+      name: user_name
+      label: User Name
+      selector: name
+    -
+      name: user_email
+      label: User Email
+      selector: email
+  ids:
+    user_id:
+      type: integer
+destination:
+  plugin: entity:user
+process:
+  uid: user_id
+  name: user_name
+  mail: user_email
+
+
+
+

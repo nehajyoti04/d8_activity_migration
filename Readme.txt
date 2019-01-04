@@ -14,5 +14,12 @@ In source -> fields section, name identifies to other parts in the migration & s
 
 In source -> Item selector is important. Map parent tags of xml file.
 
+Eg for tags, name value (field_tags or something else) in source should match source of destination. i.e source=>fields=>name should match process->field_tags->source value.
+
+
+XML File
+------------
+Create private directory in sites/default/files.
+Place xml folder in sites/default/files/private. For reference right now have placed zipped folder of xml in this module which can be extracted and placed in private folder.
 
 

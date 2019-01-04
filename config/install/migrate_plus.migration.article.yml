@@ -1,0 +1,78 @@
+id: xml_article_migration
+label: XML Article Migration
+migration_group: d8_activity_xml_source
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: private://migration_source_files/articles.xml
+  item_selector: /articles/article
+  fields:
+    -
+      name: nid
+      label: Article ID
+      selector: id
+    -
+      name: uid
+      label: User ID
+      selector: user
+    -
+      name: title
+      label: Article Title
+      selector: title
+    -
+      name: body
+      label: Description
+      selector: description
+    -
+      name: field_tags
+      label: Tags
+      selector: tags
+    -
+      name: field_article_category
+      label: category
+      selector: categories/category
+    -
+      name: created
+      label: Created
+      selector: created
+  ids:
+    nid:
+      type: integer
+destination:
+  plugin: entity:node
+process:
+  nid: id
+  uid:
+    plugin: migration_lookup
+    migration: xml_user_migration
+    source: uid
+    no_stub: true
+  type:
+    plugin: default_value
+    default_value: article
+  title: title
+  body: body
+  field_tags:
+    -
+      plugin: explode
+      source: field_tags
+      delimiter: ', '
+    -
+      plugin: entity_generate
+      value_key: name
+      bundle_key: vid
+      bundle: tags
+      entity_type: taxonomy_term
+  field_article_category:
+    plugin: migration_lookup
+    migration: d8_migration_create_taxonomy
+    source: field_article_category 
+    no_stub: true
+  created:
+    plugin: callback
+    source: created
+    from_format: Y-m-d
+    callable: strtotime
+    created: created
+  changed: '@created'
