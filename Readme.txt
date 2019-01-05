@@ -16,6 +16,7 @@ In source -> Item selector is important. Map parent tags of xml file.
 
 Eg for tags, name value (field_tags or something else) in source should match source of destination. i.e source=>fields=>name should match process->field_tags->source value.
 
+In articles.xml of source files, categories were I think written incorrectly i.e instead of integer it was considered as string. Have corrected it as per my convenience & understanding and updated in this zip file.
 
 XML File
 ------------

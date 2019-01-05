@@ -67,7 +67,7 @@ process:
   field_article_category:
     plugin: migration_lookup
     migration: d8_migration_create_taxonomy
-    source: field_article_category 
+    source: field_article_category
     no_stub: true
   created:
     plugin: callback
@@ -76,3 +76,7 @@ process:
     callable: strtotime
     created: created
   changed: '@created'
+migration_dependencies:
+  required:
+    - d8_migration_create_taxonomy
+    - xml_user_migration
